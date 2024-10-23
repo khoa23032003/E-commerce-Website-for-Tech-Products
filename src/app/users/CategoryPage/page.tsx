@@ -34,6 +34,7 @@ const Page = () => {
                 <CardComponent />
                 <CardComponent />
                 <CardComponent />
+                <CardComponent />
             </div>
 
 
