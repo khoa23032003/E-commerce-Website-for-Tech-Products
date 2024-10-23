@@ -1,5 +1,5 @@
 // src/app/users/layout.tsx
-import Footer from "@/components/(User)/Footer";
+import Footer from "@/components/(User)/Footer/Footer";
 import Navbar from "@/components/(User)/Navbar";
 import React, { ReactNode } from "react";
 

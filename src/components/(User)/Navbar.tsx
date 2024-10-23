@@ -6,12 +6,12 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 const Navbar = () => {
   return (
-    <div className="bg-yellow-300 p-4 flex">
+    <div className="bg-yellow-300 p-0 flex h-[65px] items-center">
       {/* LOGO */}
       <div className="w-1/5"></div>
       {/* TEXT */}
       <div className="w-3/5">
-        <ul className="flex gap-4 justify-center text-white text-sm block  ">
+        <ul className="flex gap-4 justify-center text-white text-[12px] block  ">
           <li>
             <a href="">Trang chủ</a>
           </li>
