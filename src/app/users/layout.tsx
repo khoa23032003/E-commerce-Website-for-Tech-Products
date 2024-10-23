@@ -9,11 +9,13 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div>
+    <div className="h-screen">
       <header>
         <Navbar />
       </header>
-      <main>{children}</main>
+      <main className=" overflow-scroll">
+        {children}
+        </main>
       <Footer />
     </div>
   );
