@@ -1,13 +1,16 @@
 import React from "react";
 import { AiFillHome, AiOutlineArrowDown, AiOutlineRight } from "react-icons/ai";
+
 import { BsDeviceSsdFill, BsGpuCard } from "react-icons/bs";
 import { FaArrowDownShortWide, FaArrowDownWideShort, FaGift, FaMemory, FaMicrochip } from "react-icons/fa6";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoStar } from "react-icons/io5";
 import { MdMonitor } from "react-icons/md";
 
+
 const CardComponent = () => {
     return (
+
 
         <div className=" mx-auto bg-white border border-gray-200 rounded-md shadow-lg overflow-hidden   ">
 
@@ -51,6 +54,7 @@ const CardComponent = () => {
                 </div>
             </div>
         </div>
+
 
 
 
