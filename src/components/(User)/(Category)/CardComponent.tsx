@@ -1,35 +1,64 @@
 import React from "react";
 import { AiFillHome, AiOutlineArrowDown, AiOutlineRight } from "react-icons/ai";
-import { FaArrowDownShortWide, FaArrowDownWideShort } from "react-icons/fa6";
-import { FiPercent } from "react-icons/fi";
+
+import { BsDeviceSsdFill, BsGpuCard } from "react-icons/bs";
+import { FaArrowDownShortWide, FaArrowDownWideShort, FaGift, FaMemory, FaMicrochip } from "react-icons/fa6";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoStar } from "react-icons/io5";
+import { MdMonitor } from "react-icons/md";
+
 
 const CardComponent = () => {
     return (
 
-        <div className="w-full max-w-xs bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl mx-auto">
-        <a href="#">
-            <img className="rounded-t-lg w-40 h-40 object-cover mt-5 mx-auto" src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/x/_/x_m_24.png" alt="iPhone" />
-        </a>
-        <div className="p-5">
-            <a href="#">
-                <h5 className="mb-3 text-lg font-semibold tracking-tight text-gray-800 hover:text-blue-600 transition-colors">IPhone</h5>
-            </a>
-            <p className="text-red-500 font-medium mb-2 ">20.000.000 đ</p>
-            <div className="flex justify-between items-center">
-                <div className="flex text-yellow-500 space-x-1">
-                    <IoStar /> <IoStar /> <IoStar /> <IoStar /> <IoStar />
+
+        <div className=" mx-auto bg-white border border-gray-200 rounded-md shadow-lg overflow-hidden   ">
+
+            <div className="relative">
+                <a href="#">
+                    <img
+                        className="object-cover mx-auto"
+                        src="https://product.hstatic.net/200000722513/product/wift-go-ai-2024-gen-2-sfg14-73-71zx_1_ccc2cc55cf11451086e09eac92cae064_7ff907dccc634ba2ab1a5d42a52e095a_grande.png"
+                        alt="Product"
+                    />
+                </a>
+                <div className="absolute top-3 right-3 text-red-600">
+                    <FaGift />
                 </div>
-                <div className="flex items-center text-sm">
-                    Yêu thích <IoIosHeartEmpty className="text-red-500 ml-1 text-xl" />
+            </div>
+
+            <div className="p-5">
+                <a href="#">
+                    <span className="mb-3 text-sm font-semibold tracking-tight">
+                        Laptop Acer Swift Go 14 SFG14 73 57FZ
+                    </span>
+                </a>
+                <div className="border rounded-sm bg-gray-200 text-xs text-gray-500 font-medium flex flex-wrap py-1 px-1 mt-2 ">
+                    <span className="w-1/2 mb-1 flex"><FaMicrochip className="mr-1" />Ultra 7 15H</span>
+                    <span className="w-1/2 mb-1 flex"><BsGpuCard className="mr-1" />Intel Arc</span>
+                    <span className="w-1/2 mb-1 flex"><FaMemory className="mr-1" />16 GB</span>
+                    <span className="w-1/2 mb-1 flex"><BsDeviceSsdFill className="mr-1" />512 GB</span>
+                    <span className="flex mb-1"><MdMonitor className="mr-1" />14 inch 2.8K IPS</span>
+                </div>
+
+
+
+                <p className="text-red-500 font-medium mt-2">20.000.000 đ</p>
+                <div className="lg:flex sm:flex-none justify-between mt-2">
+                    <div className="flex text-yellow-500 ">
+                        <div className="text-xs">0.0</div> <div className="text-sm ml-1"><IoStar /></div>
+                    </div>
+                    <div className="text-red-500 text-xl">
+                        <IoIosHeartEmpty  />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    
-    
+
+
+
+
+
 
 
     )
