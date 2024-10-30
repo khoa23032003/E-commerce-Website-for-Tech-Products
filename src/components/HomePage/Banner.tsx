@@ -1,32 +1,56 @@
-// components/Banner.js
-"use client";
+// components/HomePage/Banner.js
 import Image from "next/image";
 
 const Banner = () => {
   return (
-    <div className="grid grid-cols-2 gap-4 p-4">
-      <div className="bg-gray-100 p-4 rounded-md">
-        <h2 className="text-lg font-bold">
-          Digital SLR Camera High Definition
-        </h2>
-        <p className="text-sm">Surpass, bring, and strong</p>
-        <p className="text-red-500 font-bold">
-          $70.00 <span className="line-through text-gray-500">$180.99</span>
-        </p>
-        <button className="mt-2 px-4 py-2 bg-black text-white rounded-md">
-          Shop Now
-        </button>
+    <div className="w-full md:py-5 py-5">
+      {/* BANNER-TOP */}
+      <div className="flex w-full lg:h-[50vh] md:h-[55vh] h-[30vh] gap-2 py-1">
+        <div className="w-full lg:w-3/4 relative border-2 border-white rounded-md shadow-lg p-4 bg-white">
+          <Image
+            src="https://file.hstatic.net/200000420363/file/slide-tong-5-nganh-hang.jpg"
+            alt="Banner Image"
+            layout="fill"
+            objectFit="fill"
+          />
+        </div>
+        <div className="w-1/4 relative hidden lg:block border-2 border-white rounded-md shadow-lg p-4 bg-white">
+          <Image
+            src="https://theme.hstatic.net/200000420363/1001292105/14/infotabzzimg1.png?v=188"
+            alt="Side Image"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
       </div>
-      <div className="bg-gray-100 p-4 rounded-md">
-        <h2 className="text-lg font-bold">Dried Fruit Natural Fruit</h2>
-        <p className="text-red-500 font-bold">$70.00</p>
-        <Image
-          src="/bannerconten.jpg"
-          alt="Product"
-          width={200}
-          height={200}
-          className="mt-2"
-        />
+
+      {/* BANNER-BOTTOM */}
+      <div className="flex w-full lg:h-[20vh] md:h-[15vh] h-[12vh] gap-2">
+        <div className="flex w-full lg:w-3/4 relative border-2 border-white rounded-md shadow-lg bg-white">
+          {[...Array(3)].map((_, index) => (
+            <div
+              key={index}
+              className="w-full lg:w-1/3 h-full relative border-2 border-white rounded-md shadow-lg p-4 bg-white"
+            >
+              <Image
+                src={`https://file.hstatic.net/200000722513/file/banner_${
+                  index + 1
+                }.jpg`}
+                alt={`Banner Image ${index + 1}`}
+                layout="fill"
+                objectFit="fill"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="w-1/4 h-full relative border-2 border-white rounded-md shadow-lg p-2 bg-white hidden lg:block">
+          <Image
+            src="https://theme.hstatic.net/200000420363/1001292105/14/banner_right_5.jpg?v=188"
+            alt="Banner Image"
+            layout="fill"
+            objectFit="fill"
+          />
+        </div>
       </div>
     </div>
   );
