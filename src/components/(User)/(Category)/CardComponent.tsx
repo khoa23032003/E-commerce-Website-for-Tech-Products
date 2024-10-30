@@ -1,5 +1,6 @@
+
 import React from "react";
-import { AiFillHome, AiOutlineArrowDown, AiOutlineRight } from "react-icons/ai";
+
 
 import { BsDeviceSsdFill, BsGpuCard } from "react-icons/bs";
 import { FaArrowDownShortWide, FaArrowDownWideShort, FaGift, FaMemory, FaMicrochip } from "react-icons/fa6";
@@ -12,22 +13,24 @@ const CardComponent = () => {
     return (
 
 
-        <div className=" mx-auto bg-white border border-gray-200 rounded-md shadow-lg overflow-hidden   ">
+        <div className=" mx-auto w-full bg-white border border-gray-200 rounded-md shadow-lg overflow-hidden   ">
 
             <div className="relative">
                 <a href="#">
                     <img
-                        className="object-cover mx-auto"
+                        className="object-cover mx-auto h-50"
                         src="https://product.hstatic.net/200000722513/product/wift-go-ai-2024-gen-2-sfg14-73-71zx_1_ccc2cc55cf11451086e09eac92cae064_7ff907dccc634ba2ab1a5d42a52e095a_grande.png"
                         alt="Product"
                     />
+                   
                 </a>
+                
                 <div className="absolute top-3 right-3 text-red-600">
                     <FaGift />
                 </div>
             </div>
 
-            <div className="p-5">
+            <div className="p-3">
                 <a href="#">
                     <span className="mb-3 text-sm font-semibold tracking-tight">
                         Laptop Acer Swift Go 14 SFG14 73 57FZ
@@ -49,7 +52,7 @@ const CardComponent = () => {
                         <div className="text-xs">0.0</div> <div className="text-sm ml-1"><IoStar /></div>
                     </div>
                     <div className="text-red-500 text-xl">
-                        <IoIosHeartEmpty  />
+                        <IoIosHeartEmpty />
                     </div>
                 </div>
             </div>
