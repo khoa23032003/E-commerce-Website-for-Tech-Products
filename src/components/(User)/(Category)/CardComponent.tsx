@@ -22,9 +22,9 @@ const CardComponent = () => {
                         src="https://product.hstatic.net/200000722513/product/wift-go-ai-2024-gen-2-sfg14-73-71zx_1_ccc2cc55cf11451086e09eac92cae064_7ff907dccc634ba2ab1a5d42a52e095a_grande.png"
                         alt="Product"
                     />
-                   
+
                 </a>
-                
+
                 <div className="absolute top-3 right-3 text-red-600">
                     <FaGift />
                 </div>
