@@ -41,19 +41,19 @@ const Page = () => {
             <h1 className="font-bold text-lg mb-3">Sắp xếp theo</h1>
             <div className="flex flex-wrap gap-3 mb-5">
                 <div className="border border-gray-300 rounded-xl p-4 text-center text-xs w-auto">
-                    <span className="flex items-center">
+                    <span className="flex items-center ">
                         <FaArrowDownShortWide className="mr-2" style={{ fontSize: '15px' }} />
                         Giá cao - thấp
                     </span>
                 </div>
                 <div className="border border-gray-300 rounded-xl p-4 text-center text-xs w-auto">
-                    <span className="flex items-center">
-                        <FaArrowDownWideShort className="mr-2" style={{ fontSize: '15px' }} />
+                    <span className="flex items-center ">
+                        <FaArrowDownWideShort className="mr-2 " style={{ fontSize: '15px' }} />
                         Giá thấp - cao
                     </span>
                 </div>
                 <div className="border border-gray-300 rounded-xl p-4 text-center text-xs w-auto">
-                    <span className="flex items-center">
+                    <span className="flex items-center ">
                         <FiPercent className="mr-2" style={{ fontSize: '15px' }} />
                         Khuyến mãi
                     </span>

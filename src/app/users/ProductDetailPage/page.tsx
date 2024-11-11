@@ -52,13 +52,13 @@ const Page = () => {
                             <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 my-2">
                                 <button
                                     type="button"
-                                    className="w-full md:w-auto px-6 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm transition duration-200 ease-in-out transform hover:scale-105"
+                                    className="w-full md:w-auto px-6 py-2 text-sm font-semibold text-white bg-button-light hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm transition duration-200 ease-in-out transform hover:scale-105"
                                 >
                                     Mua ngay
                                 </button>
                                 <button
                                     type="button"
-                                    className="w-full md:w-auto px-6 py-2 text-sm font-semibold text-blue-600 border border-blue-600 hover:text-white hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm transition duration-200 ease-in-out transform hover:scale-105"
+                                    className="w-full md:w-auto px-6 py-2 text-sm font-semibold text-button-light border border-button-light hover:text-white hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm transition duration-200 ease-in-out transform hover:scale-105"
                                 >
                                     Thêm vào giỏ hàng
                                 </button>
