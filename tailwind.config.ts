@@ -9,6 +9,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -34,9 +35,9 @@ const config: Config = {
           DEFAULT: "#8BC34A",
         },
         button: {
-          light: "#2196F3", // Màu cho nút trong chế độ sáng
+          light: "#255deb", // Màu cho nút trong chế độ sáng
           dark: "#1976D2", // Màu cho nút trong chế độ tối
-          DEFAULT: "#2196F3",
+          DEFAULT: "#255deb",
         },
         // Thêm các màu tùy chỉnh khác nếu cần
         background: {
