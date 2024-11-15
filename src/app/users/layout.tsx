@@ -2,6 +2,7 @@ import Footer from "@/components/(User)/Footer/Footer";
 import Navbar from "@/components/(User)/Navbar";
 import React, { ReactNode } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { ThemeProvider } from "next-themes";
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,7 +16,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </header>
       <main className="flex-grow container mx-auto pt-16 pb-16 ">
         {/* Đệm cho header và footer */}
-        {children}
+        {/* chế độ sáng tối */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </main>
       <footer className="bg-gray-100 p-5 text-gray-800">
         <Footer />
