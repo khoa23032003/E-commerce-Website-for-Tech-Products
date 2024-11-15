@@ -33,9 +33,9 @@ const Banner = () => {
               className="w-full lg:w-1/3 h-full relative border-2 border-white rounded-md shadow-lg p-4 bg-white"
             >
               <Image
-                src={`https://file.hstatic.net/200000722513/file/banner_${
-                  index + 1
-                }.jpg`}
+                src={
+                  "https://theme.hstatic.net/200000420363/1001292105/14/infotabzzimg1.png?v=188"
+                }
                 alt={`Banner Image ${index + 1}`}
                 layout="fill"
                 objectFit="fill"
@@ -45,7 +45,7 @@ const Banner = () => {
         </div>
         <div className="w-1/4 h-full relative border-2 border-white rounded-md shadow-lg p-2 bg-white hidden lg:block">
           <Image
-            src="https://theme.hstatic.net/200000420363/1001292105/14/banner_right_5.jpg?v=188"
+            src="https://theme.hstatic.net/200000420363/1001292105/14/infotabzzimg1.png?v=188"
             alt="Banner Image"
             layout="fill"
             objectFit="fill"
