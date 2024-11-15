@@ -6,10 +6,10 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@shadcn/ui/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
-
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -35,9 +35,9 @@ const config: Config = {
           DEFAULT: "#8BC34A",
         },
         button: {
-          light: "#255deb", // Màu cho nút trong chế độ sáng
+          light: "#2196F3", // Màu cho nút trong chế độ sáng
           dark: "#1976D2", // Màu cho nút trong chế độ tối
-          DEFAULT: "#255deb",
+          DEFAULT: "#2196F3",
         },
         // Thêm các màu tùy chỉnh khác nếu cần
         background: {
