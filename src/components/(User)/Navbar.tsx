@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -13,12 +13,49 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 const Navbar = () => {
   const [isClick, setIsClick] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [menuItems, setMenuItems] = useState([]); // State để lưu trữ dữ liệu từ API
+  const [loading, setLoading] = useState(true); // State để theo dõi trạng thái tải dữ liệu
+
+  // Interface cho menu items
+  interface NavBarItem {
+    id: string;
+    name: string;
+    link: string;
+  }
 
   // Hàm để bật/tắt thanh menu trên mobile
   const toggleNavbar = () => setIsClick(!isClick);
 
   // Hàm để bật/tắt thanh tìm kiếm
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
+
+  // Hàm gọi API để lấy dữ liệu navbar
+  const fetchMenuItems = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/navbar"); // Gọi API
+      if (!response.ok) {
+        throw new Error("Lỗi khi gọi API");
+      }
+      const result = await response.json(); // Chuyển dữ liệu thành JSON
+
+      // Lấy dữ liệu từ key `data`
+      if (result.success && Array.isArray(result.data)) {
+        setMenuItems(result.data); // Lưu dữ liệu vào state
+      } else {
+        console.error("Dữ liệu API không đúng định dạng:", result);
+        setMenuItems([]); // Đảm bảo state là mảng
+      }
+    } catch (error) {
+      console.error("Lỗi khi gọi API navbar:", error);
+    } finally {
+      setLoading(false); // Hoàn tất tải dữ liệu
+    }
+  };
+
+  // Gọi fetchMenuItems khi component được mount
+  useEffect(() => {
+    fetchMenuItems();
+  }, []);
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 bg-white shadow-lg text-gray-800 flex h-[65px] items-center border-b border-gray-200">
@@ -29,15 +66,17 @@ const Navbar = () => {
 
       {/* Các liên kết điều hướng */}
       <div className="hidden md:flex w-3/5 justify-center">
-        <ul className="flex gap-5 lg:gap-8 items-center text-gray-700 text-sm lg:text-lg font-medium">
-          {["Trang chủ", "Sản phẩm mới", "Sản phẩm bán chạy", "Sản phẩm"].map(
-            (text, index) => (
-              <li key={index} className="hover:text-blue-500 transition">
-                <a href="#">{text}</a>
+        {loading ? (
+          <p>Đang tải...</p>
+        ) : (
+          <ul className="flex gap-5 lg:gap-8 items-center text-gray-700 text-sm lg:text-lg font-medium">
+            {menuItems.map((item: NavBarItem) => (
+              <li key={item.id} className="hover:text-blue-500 transition">
+                <a href={item.link}>{item.name}</a>
               </li>
-            )
-          )}
-        </ul>
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* Các biểu tượng và nút menu trên di động */}
@@ -96,17 +135,12 @@ const Navbar = () => {
         {isClick && (
           <div className="md:hidden absolute right-0 top-full mt-2 w-11/12 bg-white shadow-lg rounded-lg z-10">
             <ul className="flex flex-col text-gray-700 text-base p-4 space-y-2">
-              {[
-                "Trang chủ",
-                "Sản phẩm mới",
-                "Sản phẩm bán chạy",
-                "Sản phẩm",
-              ].map((text, index) => (
+              {menuItems.map((item: NavBarItem) => (
                 <li
-                  key={index}
+                  key={item.id}
                   className="py-2 border-b last:border-b-0 hover:text-blue-500 transition"
                 >
-                  <a href="#">{text}</a>
+                  <a href={item.link}>{item.name}</a>
                 </li>
               ))}
             </ul>
