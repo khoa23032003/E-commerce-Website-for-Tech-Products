@@ -196,6 +196,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                     dù là làm việc, giải trí hay sáng tạo.</p>
             </div>
 
+
         </div>
     );
 };
