@@ -207,6 +207,13 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                     </div>
     
                 </div> */}
+            <div className='bg-white border rounded-md mt-4 '>
+                <p className='text-center font-bold p-2 text-xl '>Sản phẩm liên quan</p>
+                <div className="flex flex-col md:flex-row p-4 gap-2">
+
+                </div>
+
+            </div>
 
         </div>
     );
