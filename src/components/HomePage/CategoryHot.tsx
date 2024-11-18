@@ -22,12 +22,12 @@ const CategoryHot = () => {
         </div>
       </div>
 
-      {/* PRODUCT */}
+      {/* PRODUCT
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-2 md:gap-2 lg:gap-2 p-5">
         {[...Array(4)].map((_, index) => (
           <CardComponent key={index} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
