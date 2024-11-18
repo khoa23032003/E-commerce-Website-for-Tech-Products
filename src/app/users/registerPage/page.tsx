@@ -4,24 +4,25 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import axios from "axios";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Register = () => {
+  const [name, setName] = useState(""); // Trạng thái cho tên người dùng
+  const [email, setEmail] = useState(""); // Trạng thái cho email
+  const [password, setPassword] = useState(""); // Trạng thái cho mật khẩu
   const router = useRouter();
 
-  const handleLogin = async (e: any) => {
+  const handleRegister = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/user/login", {
+      const response = await axios.post("http://localhost:8080/user", {
+        name,
         email,
         password,
       });
-      localStorage.setItem("access_token", response.data.access_token);
-      alert("Login thành công!");
-      router.push("/cart");
+      alert("Đăng ký thành công! Bạn có thể đăng nhập ngay.");
+      router.push("/login"); // Điều hướng đến trang đăng nhập
     } catch (error) {
-      console.error("Error during login:", error);
-      alert("Đăng nhập thất bại! Vui lòng kiểm tra thông tin.");
+      console.error("Error during registration:", error);
+      alert("Đăng ký thất bại! Vui lòng kiểm tra thông tin.");
     }
   };
 
@@ -29,8 +30,24 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="flex flex-col bg-white mx-auto w-full max-w-md p-8 h-auto border-2 border-gray-300 rounded-xl shadow-lg">
         <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">
-          Đăng nhập
+          Đăng ký
         </h1>
+        <div className="mb-4">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Tên của bạn
+          </label>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Tên đầy đủ"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -63,24 +80,24 @@ const Login = () => {
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
-        <div className="flex justify-between items-center mb-6">
-          <label className="flex items-center text-sm text-gray-600">
-            <input type="checkbox" className="mr-2 rounded" />
-            Nhớ mật khẩu
-          </label>
-          <a href="#" className="text-sm text-blue-600 hover:underline">
-            Bạn chưa có tài khoản?
-          </a>
-        </div>
         <button
-          onClick={handleLogin}
+          onClick={handleRegister}
           className="w-full py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition duration-200"
         >
-          Đăng nhập
+          Đăng ký
         </button>
+        <p className="text-center text-sm text-gray-600 mt-4">
+          Đã có tài khoản?{" "}
+          <a
+            href="/login"
+            className="text-blue-600 hover:underline font-semibold"
+          >
+            Đăng nhập
+          </a>
+        </p>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
