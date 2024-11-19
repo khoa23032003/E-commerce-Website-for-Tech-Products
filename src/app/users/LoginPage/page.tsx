@@ -18,7 +18,7 @@ const Login = () => {
       });
       localStorage.setItem("access_token", response.data.access_token);
       alert("Login thành công!");
-      router.push("/cart");
+      router.push("/users/profile");
     } catch (error) {
       console.error("Error during login:", error);
       alert("Đăng nhập thất bại! Vui lòng kiểm tra thông tin.");
@@ -68,9 +68,12 @@ const Login = () => {
             <input type="checkbox" className="mr-2 rounded" />
             Nhớ mật khẩu
           </label>
-          <a href="#" className="text-sm text-blue-600 hover:underline">
+          <div
+            onClick={() => router.push("/users/registerPage")}
+            className="text-sm text-blue-600 hover:underline"
+          >
             Bạn chưa có tài khoản?
-          </a>
+          </div>
         </div>
         <button
           onClick={handleLogin}
