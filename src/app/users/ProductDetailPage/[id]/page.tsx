@@ -1,9 +1,18 @@
 "use client";
+<<<<<<< HEAD
 
 import { AiFillHome, AiOutlineRight } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa6";
 import { IoStar } from "react-icons/io5";
 
+=======
+import CardComponent from '@/components/(User)/(Category)/CardComponent';
+import React from 'react';
+import { AiFillHome, AiOutlineRight } from "react-icons/ai";
+import { FaCheck } from "react-icons/fa6";
+import { IoStar } from "react-icons/io5";
+
+>>>>>>> 463ee69 (Update page.tsx)
 
 // Định nghĩa interface cho Product
 interface Product {
@@ -43,7 +52,10 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
     if (!product) {
         return <div>Không tìm thấy sản phẩm.</div>;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 463ee69 (Update page.tsx)
     return (
         <div className="px-4 sm:px-6 lg:px-12 xl:px-20 mt-5">
             {/* Breadcrumb */}
