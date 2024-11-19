@@ -195,13 +195,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                     đáp ứng hoàn hảo nhu cầu của các nhà sáng tạo nội dung. Độ sáng 400nits và tần số quét 120Hz mang đến trải nghiệm xem mượt mà và thoải mái,
                     dù là làm việc, giải trí hay sáng tạo.</p>
             </div>
-            <div className='bg-white border rounded-md mt-4 '>
-                <p className='text-center font-bold p-2 text-xl '>Sản phẩm liên quan</p>
-                <div className="flex flex-col md:flex-row p-4 gap-2">
-                </div>
 
-
-            </div>
 
         </div>
     );
