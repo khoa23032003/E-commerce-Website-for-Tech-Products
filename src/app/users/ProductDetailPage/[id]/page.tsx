@@ -1,11 +1,71 @@
 "use client";
-import CardComponent from '@/components/(User)/(Category)/CardComponent';
-import React from 'react';
-import { AiFillHome, AiOutlineRight } from 'react-icons/ai';
-import { FaCheck } from 'react-icons/fa6';
-import { IoStar } from 'react-icons/io5';
 
-const Page = () => {
+
+import { AiFillHome, AiOutlineRight } from "react-icons/ai";
+import { FaCheck } from "react-icons/fa6";
+import { IoStar } from "react-icons/io5";
+
+
+
+
+
+
+
+// Định nghĩa interface cho Product
+interface Product {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    imageUrl: string;
+    stock: number;
+}
+
+// Sử dụng async function để fetch dữ liệu trong Server Component
+const ProductDetail = async ({ params }: { params: { id: string } }) => {
+    const { id } = params;
+    let product: Product | null = null;
+    let error: string | null = null;
+
+    try {
+        // Gọi API từ backend NestJS
+        const res = await fetch(`http://localhost:8080/product/${id}`);
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+            product = data.data;  // Trả về dữ liệu sản phẩm nếu thành công
+        } else {
+            error = data.message || 'Không thể lấy dữ liệu sản phẩm';
+        }
+    } catch (err) {
+        error = `Lỗi kết nối với server`;
+    }
+
+    // Xử lý lỗi và trường hợp không tìm thấy sản phẩm
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    if (!product) {
+        return <div>Không tìm thấy sản phẩm.</div>;
+    }
+
+    //     return (
+    //         <div className="product-detail">
+    //             <h1>{product.name}</h1>
+    //             <div className="product-info">
+    //                 <img src={product.imageUrl} alt={product.name} width="300" />
+    //                 <div>
+    //                     <p><strong>Giá:</strong> {product.price} VND</p>
+    //                     <p><strong>Mô tả:</strong> {product.description}</p>
+    //                     <p><strong>Tồn kho:</strong> {product.stock}</p>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // };
+
+
     return (
         <div className="px-4 sm:px-6 lg:px-12 xl:px-20 mt-5">
             {/* Breadcrumb */}
@@ -18,6 +78,7 @@ const Page = () => {
             </div>
 
             <div className="flex flex-col md:flex-row gap-4">
+
                 {/* Product details column */}
                 <div className="flex-1 bg-white border rounded-md shadow-lg transition-all transform overflow-hidden">
                     <div className="flex flex-col md:flex-row gap-4 p-4">
@@ -26,15 +87,17 @@ const Page = () => {
                             <a href="#">
                                 <img
                                     className="h-64 md:h-80"
-                                    src="https://product.hstatic.net/200000722513/product/wift-go-ai-2024-gen-2-sfg14-73-71zx_1_ccc2cc55cf11451086e09eac92cae064_7ff907dccc634ba2ab1a5d42a52e095a_grande.png"
-                                    alt="Laptop Acer Swift Go 14"
+                                    // src="https://product.hstatic.net/200000722513/product/wift-go-ai-2024-gen-2-sfg14-73-71zx_1_ccc2cc55cf11451086e09eac92cae064_7ff907dccc634ba2ab1a5d42a52e095a_grande.png"
+                                    // alt="Laptop Acer Swift Go 14"
+                                    src={product.imageUrl}
+                                    alt={product.name}
                                 />
                             </a>
                         </div>
 
                         {/* Product information */}
                         <div className="space-y-2">
-                            <span className="text-lg md:text-xl font-semibold">Laptop Acer Swift Go 14 SFG14 73 57FZ</span>
+                            <span className="text-lg md:text-xl font-semibold">{product.name}</span>
                             <div className="flex text-yellow-500 font-bold">
                                 <div className="text-xs">0.0</div>
                                 <div className="text-sm ml-1"><IoStar /></div>
@@ -42,10 +105,10 @@ const Page = () => {
                             <div className="flex text-xs text-gray-400 space-x-2">
                                 <span>Thương hiệu</span>
                                 <span>|</span>
-                                <span>SKU: 0000011111</span>
+                                <span>SKU: {product.id}</span>
                             </div>
                             <div className="my-2">
-                                <span className="text-red-500 font-medium text-lg md:text-xl">20.000.000đ</span>
+                                <span className="text-red-500 font-medium text-lg md:text-xl">{product.price} đ</span>
                             </div>
 
                             {/* Action buttons */}
@@ -110,6 +173,7 @@ const Page = () => {
             {/* Phần mô tả sản phẩm */}
             <div className="bg-white border rounded-md shadow-lg overflow-hidden p-4 mt-4 px-8">
                 <p className="text-xl font-semibold mb-1">Mô tả sản phẩm</p>
+                {product.description}
                 <p className='text-justify text-md'>
                     Acer Swift Go 14 AI SFG14-73-53X7 là chiếc laptop văn phòng mỏng nhẹ tiên phong,
                     sở hữu sức mạnh vượt trội từ bộ vi xử lý laptop Intel® Core™ Ultra 5 125H thế hệ mới nhất,
@@ -153,20 +217,20 @@ const Page = () => {
                     đáp ứng hoàn hảo nhu cầu của các nhà sáng tạo nội dung. Độ sáng 400nits và tần số quét 120Hz mang đến trải nghiệm xem mượt mà và thoải mái,
                     dù là làm việc, giải trí hay sáng tạo.</p>
             </div>
-            <div className='bg-white border rounded-md mt-4 '>
-                <p className='text-center font-bold p-2 text-xl '>Sản phẩm liên quan</p>
-                <div className="flex flex-col md:flex-row p-4 gap-2">
-                    <CardComponent />
-                    <CardComponent />
-                    <CardComponent />
-                    <CardComponent />
-                    <CardComponent />
-                </div>
-
-            </div>
+            {/* <div className='bg-white border rounded-md mt-4 '>
+                    <p className='text-center font-bold p-2 text-xl '>Sản phẩm liên quan</p>
+                    <div className="flex flex-col md:flex-row p-4 gap-2">
+                        <CardComponent />
+                        <CardComponent />
+                        <CardComponent />
+                        <CardComponent />
+                        <CardComponent />
+                    </div>
+    
+                </div> */}
 
         </div>
     );
 };
 
-export default Page;
+export default ProductDetail;
