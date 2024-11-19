@@ -1,10 +1,5 @@
 "use client";
-<<<<<<< HEAD
-import CardComponent from '@/components/(User)/(Category)/CardComponent';
-import React from 'react';
-=======
 
->>>>>>> eddc3a8 (Update ProductDetail)
 import { AiFillHome, AiOutlineRight } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa6";
 import { IoStar } from "react-icons/io5";
