@@ -1,70 +1,61 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+
+interface UserData {
+  id: string;
+  email: string;
+  name: string;
+}
 
 const Profile = () => {
-  const [user, setUser] = useState<any>(null);
+  const [data, setData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const token = localStorage.getItem("access_token");
-        if (!token) {
-          alert("Bạn chưa đăng nhập!");
-          return;
+    // Call API
+    fetch("http://localhost:8080/auth/me")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-        const response = await axios.get("http://localhost:8080/user/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error fetching profile:", error);
-        alert("Không thể tải thông tin người dùng.");
-      } finally {
+        return response.json();
+      })
+      .then((data: UserData) => {
+        setData(data);
         setLoading(false);
-      }
-    };
-
-    fetchUserProfile();
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
-    return <p>Đang tải thông tin...</p>;
+    return <p>Loading...</p>;
   }
 
-  if (!user) {
-    return <p>Không tìm thấy thông tin người dùng.</p>;
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  if (!data) {
+    return <p>No data available.</p>;
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold text-blue-700 text-center mb-6">
-          Thông tin người dùng
-        </h1>
-        <div className="space-y-4">
-          <div>
-            <span className="block text-gray-600 text-sm">Họ và tên:</span>
-            <p className="font-medium text-lg">
-              {user.name || "Chưa cập nhật"}
-            </p>
-          </div>
-          <div>
-            <span className="block text-gray-600 text-sm">Email:</span>
-            <p className="font-medium text-lg">{user.email}</p>
-          </div>
-          <div>
-            <span className="block text-gray-600 text-sm">Số điện thoại:</span>
-            <p className="font-medium text-lg">
-              {user.phone || "Chưa cập nhật"}
-            </p>
-          </div>
-        </div>
-      </div>
+    <div>
+      <h1>User Information</h1>
+      <p>
+        <strong>ID:</strong> {data.id}
+      </p>
+      <p>
+        <strong>Email:</strong> {data.email}
+      </p>
+      <p>
+        <strong>Name:</strong> {data.name}
+      </p>
     </div>
   );
 };
