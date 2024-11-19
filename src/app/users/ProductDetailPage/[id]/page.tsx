@@ -201,6 +201,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
                 </div>
 
+
             </div>
 
         </div>
