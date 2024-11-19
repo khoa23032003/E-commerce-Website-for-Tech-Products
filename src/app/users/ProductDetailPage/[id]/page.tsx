@@ -1,6 +1,5 @@
 "use client";
 
-
 import { AiFillHome, AiOutlineRight } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa6";
 import { IoStar } from "react-icons/io5";
@@ -197,16 +196,13 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                     dù là làm việc, giải trí hay sáng tạo.</p>
             </div>
             {/* <div className='bg-white border rounded-md mt-4 '>
-                    <p className='text-center font-bold p-2 text-xl '>Sản phẩm liên quan</p>
-                    <div className="flex flex-col md:flex-row p-4 gap-2">
-                        <CardComponent />
-                        <CardComponent />
-                        <CardComponent />
-                        <CardComponent />
-                        <CardComponent />
-                    </div>
-    
-                </div> */}
+                <p className='text-center font-bold p-2 text-xl '>Sản phẩm liên quan</p>
+                <div className="flex flex-col md:flex-row p-4 gap-2">
+                    <CardComponent />
+
+                </div>
+
+            </div> */}
 
 
         </div>
