@@ -15,7 +15,7 @@ interface Product {
 }
 
 // Sử dụng async function để fetch dữ liệu trong Server Component
-const ProductDetail = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: { id: string } }) => {
     const { id } = params;
     let product: Product | null = null;
     let error: string | null = null;
@@ -194,22 +194,12 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                     đáp ứng hoàn hảo nhu cầu của các nhà sáng tạo nội dung. Độ sáng 400nits và tần số quét 120Hz mang đến trải nghiệm xem mượt mà và thoải mái,
                     dù là làm việc, giải trí hay sáng tạo.</p>
             </div>
-            {/* <div className='bg-white border rounded-md mt-4 '>
-                    <p className='text-center font-bold p-2 text-xl '>Sản phẩm liên quan</p>
-                    <div className="flex flex-col md:flex-row p-4 gap-2">
-                        <CardComponent />
-                        <CardComponent />
-                        <CardComponent />
-                        <CardComponent />
-                        <CardComponent />
-                    </div>
-    
-                </div> */}
+
 
         </div>
     );
 };
 
-export default ProductDetail;
+export default Page;
 
 
