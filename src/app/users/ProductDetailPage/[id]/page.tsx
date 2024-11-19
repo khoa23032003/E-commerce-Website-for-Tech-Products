@@ -6,11 +6,6 @@ import { FaCheck } from "react-icons/fa6";
 import { IoStar } from "react-icons/io5";
 
 
-
-
-
-
-
 // Định nghĩa interface cho Product
 interface Product {
     id: string;
@@ -49,22 +44,6 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
     if (!product) {
         return <div>Không tìm thấy sản phẩm.</div>;
     }
-
-    //     return (
-    //         <div className="product-detail">
-    //             <h1>{product.name}</h1>
-    //             <div className="product-info">
-    //                 <img src={product.imageUrl} alt={product.name} width="300" />
-    //                 <div>
-    //                     <p><strong>Giá:</strong> {product.price} VND</p>
-    //                     <p><strong>Mô tả:</strong> {product.description}</p>
-    //                     <p><strong>Tồn kho:</strong> {product.stock}</p>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     );
-    // };
-
 
     return (
         <div className="px-4 sm:px-6 lg:px-12 xl:px-20 mt-5">
