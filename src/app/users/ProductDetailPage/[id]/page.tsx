@@ -199,10 +199,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                 <p className='text-center font-bold p-2 text-xl '>Sản phẩm liên quan</p>
                 <div className="flex flex-col md:flex-row p-4 gap-2">
                     <CardComponent />
-                    <CardComponent />
-                    <CardComponent />
-                    <CardComponent />
-                    <CardComponent />
+
                 </div>
 
             </div> */}
