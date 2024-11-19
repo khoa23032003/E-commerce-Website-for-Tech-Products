@@ -24,7 +24,7 @@ interface CardComponentProps {
 const CardComponent: React.FC<CardComponentProps> = ({ product }) => {
     return (
         <div className=" mx-auto w-full bg-white border border-gray-200 rounded-md shadow-lg overflow-hidden">
-            <Link href={`users/ProductDetailPage/${product.id}`}>
+            <Link href={`/users/ProductDetailPage/${product.id}`}>
                 <div className="relative">
                     <img
                         className="object-cover mx-auto h-50 hover:scale-105 transition-transform duration-300 ease-in-out"
