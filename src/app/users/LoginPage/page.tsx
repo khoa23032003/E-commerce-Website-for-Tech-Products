@@ -9,19 +9,33 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/user/login", {
+      const response = await axios.post("http://localhost:8080/auth/login", {
         email,
         password,
       });
-      localStorage.setItem("access_token", response.data.access_token);
-      alert("Login thành công!");
-      router.push("/cart");
-    } catch (error) {
-      console.error("Error during login:", error);
-      alert("Đăng nhập thất bại! Vui lòng kiểm tra thông tin.");
+
+      // Lưu access_token vào localStorage
+      const token = response.data.access_token;
+      localStorage.setItem("access_token", token);
+      // localStorage.setItem("access_token", response.data.access_token);
+
+      // Thông báo thành công
+      alert(`Đăng nhập thành công!\nToken: ${token}`);
+
+      // Chuyển đến trang thông tin người dùng
+      router.push("/users/profile");
+    } catch (error: any) {
+      console.error(
+        "Error during login:",
+        error.response?.data || error.message
+      );
+      alert(
+        error.response?.data?.message ||
+          "Đăng nhập thất bại! Vui lòng kiểm tra thông tin."
+      );
     }
   };
 
@@ -31,53 +45,60 @@ const Login = () => {
         <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">
           Đăng nhập
         </h1>
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700 mb-2"
+        <form onSubmit={handleLogin}>
+          <div className="mb-4">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Nhập email
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Nhập mật khẩu
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Mật khẩu"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
+            />
+          </div>
+          <div className="flex justify-between items-center mb-6">
+            <label className="flex items-center text-sm text-gray-600">
+              <input type="checkbox" className="mr-2 rounded" />
+              Nhớ mật khẩu
+            </label>
+            <div
+              onClick={() => router.push("/users/registerPage")}
+              className="text-sm text-blue-600 hover:underline cursor-pointer"
+            >
+              Bạn chưa có tài khoản?
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="w-full py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition duration-200"
           >
-            Nhập email
-          </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Nhập mật khẩu
-          </label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Mật khẩu"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-        </div>
-        <div className="flex justify-between items-center mb-6">
-          <label className="flex items-center text-sm text-gray-600">
-            <input type="checkbox" className="mr-2 rounded" />
-            Nhớ mật khẩu
-          </label>
-          <a href="#" className="text-sm text-blue-600 hover:underline">
-            Bạn chưa có tài khoản?
-          </a>
-        </div>
-        <button
-          onClick={handleLogin}
-          className="w-full py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition duration-200"
-        >
-          Đăng nhập
-        </button>
+            Đăng nhập
+          </button>
+        </form>
       </div>
     </div>
   );
