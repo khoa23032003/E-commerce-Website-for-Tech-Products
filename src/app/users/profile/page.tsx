@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 interface UserData {
@@ -11,25 +12,31 @@ interface UserData {
 const Profile = () => {
   const [data, setData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Call API
-    fetch("http://localhost:8080/auth/me")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+          throw new Error("No access token found");
         }
-        return response.json();
-      })
-      .then((data: UserData) => {
-        setData(data);
+
+        const response = await axios.get("http://localhost:8080/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setData(response.data); // axios automatically parses the JSON response
+      } catch (error: any) {
+        setError(error.message || "Something went wrong");
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   if (loading) {
@@ -37,7 +44,7 @@ const Profile = () => {
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p>Error: {error}</p>;
   }
 
   if (!data) {
