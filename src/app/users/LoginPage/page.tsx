@@ -1,8 +1,8 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import axios from "axios";
+import qs from "qs"; // Thêm qs để encode dữ liệu nếu backend yêu cầu
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,20 +12,28 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/auth/login", {
-        email,
-        password,
-      });
-
-      const token = response.data.result;
-      localStorage.setItem("access_token", token); // Lưu token vào localStorage
-      alert(`Đăng nhập thành công! Token của bạn: ${token}`);
-      router.push("/users/profile"); // Chuyển hướng đến trang Profile
-    } catch (error: any) {
-      console.error(
-        "Error during login:",
-        error.response?.data || error.message
+      // Gửi yêu cầu login với mã hóa dữ liệu dạng x-www-form-urlencoded
+      const response = await axios.post(
+        "http://localhost:8080/auth/login",
+        qs.stringify({
+          email,
+          password,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          withCredentials: true, // Bật để gửi cookie tự động
+        }
       );
+
+      // Nếu bạn dùng cookie thì không cần phải lưu token ở đây nữa
+      alert("Đăng nhập thành công!");
+
+      // Chuyển hướng đến trang thông tin người dùng
+      router.push("/users/profile");
+    } catch (error: any) {
+      console.error("Error during login:", error.response?.data || error.message);
       alert(
         error.response?.data?.message ||
           "Đăng nhập thất bại! Vui lòng kiểm tra thông tin."
@@ -73,6 +81,18 @@ const Login = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
+          </div>
+          <div className="flex justify-between items-center mb-6">
+            <label className="flex items-center text-sm text-gray-600">
+              <input type="checkbox" className="mr-2 rounded" />
+              Nhớ mật khẩu
+            </label>
+            <div
+              onClick={() => router.push("/users/registerPage")}
+              className="text-sm text-blue-600 hover:underline cursor-pointer"
+            >
+              Bạn chưa có tài khoản?
+            </div>
           </div>
           <button
             type="submit"
