@@ -3,8 +3,6 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import axios from "axios";
-import qs from "qs";
-// Thêm qs để encode dữ liệu nếu backend yêu cầu
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,32 +12,15 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8080/auth/login",
-        qs.stringify({
-          email,
-          password,
-        }), // Encode dữ liệu dạng x-www-form-urlencoded
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      const response = await axios.post("http://localhost:8080/auth/login", {
+        email,
+        password,
+      });
 
-      // Lưu accessToken vào localStorage
-      //localStorage.setItem("access_token", response.data.accessToken);
-      // Lưu access_token vào localStorage
-      const token = response.data.accessToken;
-      localStorage.setItem("access_token", token);
-      console.log(token);
-      // Thông báo thành công kèm token
+      const token = response.data.result;
+      localStorage.setItem("access_token", token); // Lưu token vào localStorage
       alert(`Đăng nhập thành công! Token của bạn: ${token}`);
-      // Thông báo thành công
-      // alert("Đăng nhập thành công!");
-
-      // Chuyển đến trang thông tin người dùng
-      router.push("/users/profile");
+      router.push("/users/profile"); // Chuyển hướng đến trang Profile
     } catch (error: any) {
       console.error(
         "Error during login:",
@@ -92,18 +73,6 @@ const Login = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
-          </div>
-          <div className="flex justify-between items-center mb-6">
-            <label className="flex items-center text-sm text-gray-600">
-              <input type="checkbox" className="mr-2 rounded" />
-              Nhớ mật khẩu
-            </label>
-            <div
-              onClick={() => router.push("/users/registerPage")}
-              className="text-sm text-blue-600 hover:underline cursor-pointer"
-            >
-              Bạn chưa có tài khoản?
-            </div>
           </div>
           <button
             type="submit"

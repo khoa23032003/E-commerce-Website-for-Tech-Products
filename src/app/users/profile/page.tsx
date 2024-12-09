@@ -1,68 +1,92 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
-
-interface UserData {
-  id: string;
-  email: string;
-  name: string;
-}
+import { useRouter } from "next/navigation";
 
 const Profile = () => {
-  const [data, setData] = useState<UserData | null>(null);
+  const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("access_token");
-        if (!token) {
-          throw new Error("No access token found");
-        }
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        alert("Vui lòng đăng nhập trước!");
+        router.push("/login");
+        return;
+      }
 
+      try {
         const response = await axios.get("http://localhost:8080/auth/me", {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Gửi token trong header
           },
         });
 
-        setData(response.data); // axios automatically parses the JSON response
+        setUser(response.data.result); // Đặt thông tin người dùng từ API
       } catch (error: any) {
-        setError(error.message || "Something went wrong");
+        console.error(
+          "Error fetching user data:",
+          error.response?.data || error.message
+        );
+        alert(
+          error.response?.data?.message ||
+            "Không thể lấy thông tin người dùng. Vui lòng đăng nhập lại."
+        );
+        router.push("/login");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchUserData();
+  }, [router]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p>Đang tải...</p>
+      </div>
+    );
   }
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
-  if (!data) {
-    return <p>No data available.</p>;
+  if (!user) {
+    return null;
   }
 
   return (
-    <div>
-      <h1>User Information</h1>
-      <p>
-        <strong>ID:</strong> {data.id}
-      </p>
-      <p>
-        <strong>Email:</strong> {data.email}
-      </p>
-      <p>
-        <strong>Name:</strong> {data.name}
-      </p>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white w-full max-w-md p-8 rounded-xl shadow-lg border-2 border-gray-300">
+        <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">
+          Thông tin cá nhân
+        </h1>
+        <div className="space-y-4">
+          <div>
+            <p className="text-sm text-gray-600 font-medium">Tên người dùng:</p>
+            <p className="text-lg font-semibold text-gray-800">{user.name}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-600 font-medium">Email:</p>
+            <p className="text-lg font-semibold text-gray-800">{user.email}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-600 font-medium">Vai trò:</p>
+            <p className="text-lg font-semibold text-gray-800">{user.role}</p>
+          </div>
+        </div>
+        <button
+          onClick={() => {
+            localStorage.removeItem("access_token");
+            alert("Đăng xuất thành công!");
+            router.push("/login");
+          }}
+          className="mt-6 w-full py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition duration-200"
+        >
+          Đăng xuất
+        </button>
+      </div>
     </div>
   );
 };
