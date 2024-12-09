@@ -1,8 +1,18 @@
-# LAMA Dev Next.js Dashboard
+# WebSite bán đồ công nghệ
 
 ## 📖 Giới thiệu
 
-**LAMA Dev Next.js Dashboard** là một ứng dụng dashboard được xây dựng bằng **Next.js**, tập trung vào hiệu suất, khả năng mở rộng, và trải nghiệm người dùng. Dự án sử dụng các công cụ hiện đại như **Tailwind CSS**, **Radix UI**, và **Recharts** để tạo giao diện trực quan và dễ dàng tùy chỉnh.
+**WebSite bán đồ công nghệ** là một ứng dụng dashboard được xây dựng bằng **Next.js**, tập trung vào hiệu suất, khả năng mở rộng, và trải nghiệm người dùng. Dự án sử dụng các công cụ hiện đại như **Tailwind CSS**, **Radix UI**, và **Recharts** để tạo giao diện trực quan và dễ dàng tùy chỉnh.Dự án Website Bán Đồ Công Nghệ là một nền tảng thương mại điện tử chuyên cung cấp các sản phẩm công nghệ như điện thoại, laptop, phụ kiện... 
+
+## 📌 Mục tiêu của dự án
+
+- Tạo trải nghiệm mua sắm tiện lợi cho người dùng.
+  
+- Quản lý tồn kho hiệu quả cho nhà quản lý.
+  
+- Tối ưu hóa quy trình từ đặt hàng đến thanh toán.
+  
+- Dự án được phát triển với giao diện thân thiện và các tính năng nổi bật, đáp ứng nhu cầu của cả khách hàng lẫn nhà quản lý.
 
 ## 🎯 Tính năng chính
 Người dùng:
