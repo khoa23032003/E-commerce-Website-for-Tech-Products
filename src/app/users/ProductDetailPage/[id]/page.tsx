@@ -15,32 +15,43 @@ interface Product {
 }
 
 // Sử dụng async function để fetch dữ liệu trong Server Component
-const ProductDetail = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: { id: string } }) => {
+    // const { id } = params;
+    // let product: Product | null = null;
+    // let error: string | null = null;
+
+    // try {
+    //     // Gọi API từ backend NestJS
+    //     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/product/${id}`);
+    //     const data = await res.json();
+
+    //     if (res.ok && data.success) {
+    //         product = data.data;  // Trả về dữ liệu sản phẩm nếu thành công
+    //     } else {
+    //         error = data.message || 'Không thể lấy dữ liệu sản phẩm';
+    //     }
+    // } catch (err) {
+    //     error = `Lỗi kết nối với server`;
+    // }
+
+
+    // // Xử lý lỗi và trường hợp không tìm thấy sản phẩm
+    // if (error) {
+    //     return <div>{error}</div>;
+    // }
+
+    // if (!product) {
+    //     return <div>Không tìm thấy sản phẩm.</div>;
+    // }
+
     const { id } = params;
-    let product: Product | null = null;
-    let error: string | null = null;
 
-    try {
-        // Gọi API từ backend NestJS
-        const res = await fetch(`http://localhost:8080/product/${id}`);
-        const data = await res.json();
+    // Fetch dữ liệu sản phẩm từ backend NestJS
+    const product = await fetchProduct(id);
 
-        if (res.ok && data.success) {
-            product = data.data;  // Trả về dữ liệu sản phẩm nếu thành công
-        } else {
-            error = data.message || 'Không thể lấy dữ liệu sản phẩm';
-        }
-    } catch (err) {
-        error = `Lỗi kết nối với server`;
-    }
-
-    // Xử lý lỗi và trường hợp không tìm thấy sản phẩm
-    if (error) {
-        return <div>{error}</div>;
-    }
-
+    // Xử lý trường hợp không tìm thấy sản phẩm
     if (!product) {
-        return <div>Không tìm thấy sản phẩm.</div>;
+        return <div>Không tìm thấy sản phẩm hoặc lỗi khi lấy dữ liệu.</div>;
     }
 
     return (
@@ -203,13 +214,42 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                         <CardComponent />
                         <CardComponent />
                     </div>
-    
+
                 </div> */}
 
         </div>
     );
 };
 
-export default ProductDetail;
+// Hàm fetch để lấy dữ liệu sản phẩm từ API
+const fetchProduct = async (id: string) => {
+    try {
+        console.log(`Fetching product with ID: ${id}`);  // Log ID đang được fetch
+
+        const res = await fetch(`http://localhost:8080/product/${id}`, { cache: 'no-store' });
+
+        // Kiểm tra nếu không phải mã phản hồi OK (200-299)
+        if (!res.ok) {
+            throw new Error(`Server trả về lỗi: ${res.status} ${res.statusText}`);
+        }
+
+        const data = await res.json();
+        console.log(data);  // Log dữ liệu trả về từ API
+
+        // Kiểm tra xem có dữ liệu sản phẩm không
+        if (data && data.id) {
+            return data;  // Trả về dữ liệu sản phẩm nếu có
+        } else {
+            throw new Error(data.message || 'Không thể lấy dữ liệu sản phẩm');
+        }
+    } catch (err: any) {
+        console.error('Error fetching product:', err);  // Log lỗi
+        return null; // Trả về null nếu có lỗi
+    }
+};
+
+export default Page;
+
+
 
 
