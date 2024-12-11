@@ -36,7 +36,7 @@ const Login = () => {
       console.error("Error during login:", error.response?.data || error.message);
       alert(
         error.response?.data?.message ||
-          "Đăng nhập thất bại! Vui lòng kiểm tra thông tin."
+        "Đăng nhập thất bại! Vui lòng kiểm tra thông tin."
       );
     }
   };
