@@ -1,10 +1,8 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import axios from "axios";
-import qs from "qs";
-// Thêm qs để encode dữ liệu nếu backend yêu cầu
+import qs from "qs"; // Thêm qs để encode dữ liệu nếu backend yêu cầu
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,37 +12,28 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // Gửi yêu cầu login với mã hóa dữ liệu dạng x-www-form-urlencoded
       const response = await axios.post(
         "http://localhost:8080/auth/login",
         qs.stringify({
           email,
           password,
-        }), // Encode dữ liệu dạng x-www-form-urlencoded
+        }),
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
+          withCredentials: true, // Bật để gửi cookie tự động
         }
       );
 
-      // Lưu accessToken vào localStorage
-      //localStorage.setItem("access_token", response.data.accessToken);
-      // Lưu access_token vào localStorage
-      const token = response.data.accessToken;
-      localStorage.setItem("access_token", token);
-      console.log(token);
-      // Thông báo thành công kèm token
-      alert(`Đăng nhập thành công! Token của bạn: ${token}`);
-      // Thông báo thành công
-      // alert("Đăng nhập thành công!");
+      // Nếu bạn dùng cookie thì không cần phải lưu token ở đây nữa
+      alert("Đăng nhập thành công!");
 
-      // Chuyển đến trang thông tin người dùng
+      // Chuyển hướng đến trang thông tin người dùng
       router.push("/users/profile");
     } catch (error: any) {
-      console.error(
-        "Error during login:",
-        error.response?.data || error.message
-      );
+      console.error("Error during login:", error.response?.data || error.message);
       alert(
         error.response?.data?.message ||
           "Đăng nhập thất bại! Vui lòng kiểm tra thông tin."
