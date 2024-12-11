@@ -36,6 +36,7 @@ const Profile = () => {
             "Không thể lấy thông tin người dùng. Vui lòng đăng nhập lại."
         );
         router.push("/login");
+
       } finally {
         setLoading(false);
       }
@@ -87,6 +88,7 @@ const Profile = () => {
           Đăng xuất
         </button>
       </div>
+
     </div>
   );
 };
