@@ -9,6 +9,7 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isClick, setIsClick] = useState(false);
@@ -61,7 +62,7 @@ const Navbar = () => {
     <div className="w-full px-4 sm:px-6 lg:px-8 bg-white shadow-lg text-gray-800 flex h-[65px] items-center border-b border-gray-200">
       {/* Logo */}
       <div className="flex w-1/2 md:w-1/5 text-xl font-bold text-blue-500">
-        KHOA
+        TTK Store
       </div>
 
       {/* Các liên kết điều hướng */}
@@ -101,12 +102,12 @@ const Navbar = () => {
             <>
               {[
                 { icon: faSearch, link: "#", onClick: toggleSearch },
-                { icon: faUser, link: "#" },
+                { icon: faUser, link: "/users/LoginPage" },
                 { icon: faHeart, link: "#" },
                 { icon: faCartShopping, link: "#" },
               ].map(({ icon, link, onClick }, index) => (
                 <li key={index}>
-                  <a
+                  <Link
                     href={link}
                     onClick={onClick}
                     className="hover:text-blue-500 transition"
@@ -115,7 +116,7 @@ const Navbar = () => {
                       icon={icon}
                       className="w-5 h-5 lg:w-6 lg:h-6"
                     />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </>
