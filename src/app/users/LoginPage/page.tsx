@@ -27,13 +27,20 @@ const Login = () => {
         }
       );
 
-      // Nếu bạn dùng cookie thì không cần phải lưu token ở đây nữa
+      // Lưu token vào localStorage sau khi đăng nhập thành công
+      const token = response.data.access_token;
+      localStorage.setItem("access_token", token); // Lưu token vào localStorage
+      console.log("Token:", token);
+
       alert("Đăng nhập thành công!");
 
       // Chuyển hướng đến trang thông tin người dùng
       router.push("/users/profile");
     } catch (error: any) {
-      console.error("Error during login:", error.response?.data || error.message);
+      console.error(
+        "Error during login:",
+        error.response?.data || error.message
+      );
       alert(
         error.response?.data?.message ||
           "Đăng nhập thất bại! Vui lòng kiểm tra thông tin."
