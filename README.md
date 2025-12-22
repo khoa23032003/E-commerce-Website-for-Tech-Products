@@ -1,82 +1,99 @@
-# WebSite bán đồ công nghệ
+# E-commerce Website for Tech Products
 
-## 📖 Giới thiệu
+A **full-stack e-commerce platform for technology products** built with **Next.js 14** and **MERN architecture**, focusing on **performance, scalability, maintainability, and real-world business features**.
 
-**WebSite bán đồ công nghệ** là một ứng dụng dashboard được xây dựng bằng **Next.js**, tập trung vào hiệu suất, khả năng mở rộng, và trải nghiệm người dùng. Dự án sử dụng các công cụ hiện đại như **Tailwind CSS**, **Radix UI**, và **Recharts** để tạo giao diện trực quan và dễ dàng tùy chỉnh.Dự án Website Bán Đồ Công Nghệ là một nền tảng thương mại điện tử chuyên cung cấp các sản phẩm công nghệ như điện thoại, laptop, phụ kiện... 
+This project includes a **customer-facing storefront** and a **powerful admin dashboard** for managing products, orders, users, and revenue analytics.
 
-## 📌 Mục tiêu của dự án
+---
 
-- Tạo trải nghiệm mua sắm tiện lợi cho người dùng.
-  
-- Quản lý tồn kho hiệu quả cho nhà quản lý.
-  
-- Tối ưu hóa quy trình từ đặt hàng đến thanh toán.
-  
-- Dự án được phát triển với giao diện thân thiện và các tính năng nổi bật, đáp ứng nhu cầu của cả khách hàng lẫn nhà quản lý.
+## 📌 Project Description
 
-## 🎯 Tính năng chính
-Người dùng:
-  
-- Xem danh mục sản phẩm theo từng loại (điện thoại, laptop, phụ kiện...).
+This is a **production-oriented e-commerce web application** designed for selling technology products such as **smartphones, laptops, and accessories**.
 
-- Xem chi tiết sản phẩm.
+The system follows a **Client–Server architecture**, separating frontend and backend responsibilities, and applies modern web development best practices such as:
 
-- Tìm kiếm sản phẩm theo tên, giá, hoặc thương hiệu.
+- Server-Side Rendering (SSR)
+- Static Site Generation (SSG)
+- Component-based UI design
+- API-first backend development
 
-- Thêm sản phẩm vào giỏ hàng và thực hiện thanh toán.
+The goal of this project is to demonstrate **real-world full-stack development skills** suitable for professional software engineering roles.
 
-- Theo dõi lịch sử mua hàng và đánh giá sản phẩm.
+---
 
-Quản trị viên:
-  
-- Quản lý sản phẩm (thêm, sửa, xóa).
+## ✨ Key Features
 
-- Xem báo cáo doanh thu theo ngày, tuần, tháng.
+### 👥 Customer Features
+- Browse products by category (phones, laptops, accessories)
+- View detailed product pages with pricing and descriptions
+- Search products by name, brand, and price range
+- Add products to cart and place orders
+- View order history
+- Responsive UI for mobile, tablet, and desktop
 
-- Quản lý thông tin khách hàng và đơn hàng.
+### 🛠️ Admin Dashboard
+- Create, update, and delete products (CRUD)
+- Manage customer orders and users
+- Track revenue statistics (daily / weekly / monthly)
+- Visualize data using interactive charts
+- Secure access to administrative features
 
-## 🛠️ Công nghệ sử dụng
+---
 
-- **Framework**: Next.js (v14.2.5)
-- **Thư viện UI**: Tailwind CSS, Radix UI, FontAwesome, React Icons
-- **Xử lý API**: Axios
-- **Biểu đồ**: Recharts
-- **Ngôn ngữ**: TypeScript
-- **Next.js**: Tối ưu hóa SEO và hiệu suất với SSR và SSG.
-- **Tailwind CSS**: Thiết kế giao diện nhanh chóng và tùy chỉnh linh hoạt.
-- **Recharts**: Biểu đồ trực quan và tương tác.
-- **Axios**: Kết nối API mượt mà và hiệu quả.
-- **React FontAwesome & React Icons**: Tích hợp biểu tượng đẹp mắt.
-- **Radix UI**: Các thành phần UI hiện đại.
-- **Hỗ trợ chế độ tối**: Thay đổi giao diện sáng/tối với `next-themes`.
+## 🧠 Technical Highlights
 
-## 🚀 Hướng dẫn cài đặt và chạy
+- **Next.js App Router** with SSR & SSG for SEO and performance
+- **Reusable component architecture**
+- **Type-safe development** using TypeScript
+- **RESTful API integration** with Axios
+- **Responsive, mobile-first UI**
+- **Dark / Light mode** with theme persistence
+- **Data visualization** using Recharts
+- Clean and scalable project structure ready for production
 
-### Yêu cầu hệ thống
+---
 
-- **npm** hoặc **yarn**
+## 🛠️ Tech Stack
 
-### Cài đặt và chạy
+### Frontend
+- **Next.js 14**
+- **React.js**
+- **TypeScript**
+- **Tailwind CSS**
+- **Radix UI**
+- **Recharts**
+- **Axios**
 
-1. Clone repository:
-   ```bash
-   git clone  https://github.com/khoa23032003/E-commerce-Website-for-Tech-Products
+### Backend
+- **Node.js**
+- **Express.js**
+- **MongoDB**
+- **Mongoose**
+- **RESTful API**
 
-2. Vào terminal:
-- **npm i** để install toàn bộ thư viện
-- **npm run dev** để chạy dự án
+### Architecture & Patterns
+- MERN Stack
+- MVC Pattern
+- API-first Design
+- Modular Folder Structure
 
-Click vào [http://localhost:3000](http://localhost:3000) để thấy được hệ thống web.
+---
 
-### GitHub BackEnd
+## 🚀 Getting Started
 
-   ```bash
-   https://github.com/khoa23032003/E-commerce-Website-for-Tech-Products-BE
-   ```
+### Prerequisites
+Make sure you have the following installed:
+- **Node.js** >= 18
+- **npm** or **yarn**
 
-## Tài liệu tham khảo
+### Installation
 
-Để có thể hiểu hơn về Next.js, hãy tham khảo tại đây:
+Clone the frontend repository:
+```bash
+git clone https://github.com/khoa23032003/E-commerce-Website-for-Tech-Products.git
+🔗 Backend Repository
 
-- [Lama Dev Youtube Channel](https://youtube.com/lamadev) 
-- [Next.js](https://nextjs.org/learn)
+The backend source code is maintained in a separate repository:
+
+👉 Backend API
+https://github.com/khoa23032003/E-commerce-Website-for-Tech-Products-BE
